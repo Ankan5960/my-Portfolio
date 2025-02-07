@@ -38,7 +38,7 @@ const Stars = (props) => {
 
 const StarsCanvas = () => {
   return (
-    <div className="w-full h-auto absolute inset-0 z-[-1]">
+    <div className="w-full h-2/3 lg:h-full absolute inset-0 z-[-1]">
       <Canvas
         camera={{ position: [0, 0, 1] }}
         onCreated={({ gl, scene }) => {

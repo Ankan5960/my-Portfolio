@@ -21,17 +21,17 @@ const Intro = () => {
       </div>
       <div className="relative h-2/3 flex sm:flex md:hidden lg:hidden">
         {/* EarthCanvas as Background */}
-        <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 ">
           <EarthCanvas />
         </div>
 
         {/* Blur Overlay */}
-        <div className="absolute inset-0 bg-gray-200/70 blur-lg "></div>
+        {/* <div className="absolute inset-0 bg-gray-200/70 blur-lg "></div> */}
 
         {/* Image on Top */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 z-10">
+        {/* <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 z-10">
           image
-        </div>
+        </div> */}
       </div>
      <StarsCanvas />
     </div>
