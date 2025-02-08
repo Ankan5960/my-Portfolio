@@ -1,3 +1,5 @@
+import { b } from 'framer-motion/client';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -7,6 +9,12 @@ export default {
   mode: "jit",
   theme: {
     extend: {
+      fontFamily: {
+        poppins: ["Poppins", "sans-serif"],
+        bruno: ["Bruno Ace SC", "sans-serif"],
+        saira: ["Saira Stencil One", "sans-serif"],
+        rajdhani: ["Rajdhani", "sans-serif"],
+      },
       colors: {
         primary: "#050816",
         secondary: "#aaa6c3",

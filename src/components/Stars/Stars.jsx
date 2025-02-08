@@ -1,4 +1,4 @@
-import { useState, useRef, useMemo, Suspense } from "react";
+import { useState, useRef, useMemo, Suspense , useEffect} from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial, Preload } from "@react-three/drei";
 import { random } from "maath";
@@ -37,8 +37,19 @@ const Stars = (props) => {
 };
 
 const StarsCanvas = () => {
+
+  useEffect(() => {
+    // Fix scroll-blocking issue by marking wheel event as passive
+    const wheelHandler = (event) => event.preventDefault();
+    document.addEventListener("wheel", wheelHandler, { passive: false });
+
+    return () => {
+      document.removeEventListener("wheel", wheelHandler);
+    };
+  }, []);
+
   return (
-    <div className="w-full h-2/3 lg:h-full absolute inset-0 z-[-1]">
+    <div className="w-full h-full md:h-[70vh] lg:h-[80vh]  absolute inset-0 z-[-1]">
       <Canvas
         camera={{ position: [0, 0, 1] }}
         onCreated={({ gl, scene }) => {

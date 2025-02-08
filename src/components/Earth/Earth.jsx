@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 
@@ -13,6 +13,17 @@ const Earth = () => {
 };
 
 const EarthCanvas = () => {
+
+  useEffect(() => {
+    // Fix scroll-blocking issue by marking wheel event as passive
+    const wheelHandler = (event) => event.preventDefault();
+    document.addEventListener("wheel", wheelHandler, { passive: false });
+
+    return () => {
+      document.removeEventListener("wheel", wheelHandler);
+    };
+  }, []);
+
   return (
     <Canvas
       shadows

@@ -3,12 +3,13 @@ import { useState } from 'react'
 import EarthCanvas from './components/Earth/Earth'
 import Intro from './Segments/Intro'
 import StarsCanvas from './components/Stars/Stars'
+import Navbar from './components/NavBar/Navbar'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <div >
+    <div className='w-screen h-auto m-0 '>
+      <Navbar />
       <Intro />
     </div>
   )
