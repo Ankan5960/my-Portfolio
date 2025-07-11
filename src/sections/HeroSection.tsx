@@ -43,7 +43,7 @@ const HeroSection = ({ sectionRef, data, scrollToSection }: HeroSectionProps) =>
         <img
           src={data.profileImage || "https://placehold.co/150x150/64748b/ffffff?text=AM"}
           alt="Profile"
-          className="w-36 h-36 rounded-full mx-auto mb-6 shadow-lg object-cover transform transition-transform duration-500 hover:scale-105"
+          className="w-50 h-50 rounded-full mx-auto mb-6 shadow-lg object-cover transform transition-transform duration-500 hover:scale-105"
           onError={(e) => {
             const target = e.target as HTMLImageElement;
             target.onerror = null;

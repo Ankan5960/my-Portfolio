@@ -61,7 +61,7 @@ const App = () => {
 
   const portfolioData = {
     name: "Ankan Maity",
-    profileImage: "https://media.licdn.com/dms/image/v2/D4D03AQHKfZxxO8L_sg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1693981299357?e=1757548800&v=beta&t=m4JZv0Vggk7mYc2B-AqN7ivh4x4HIo-BzydvI6tXGGk",
+    profileImage: "/images/profile1.jpg",
     tagline: "Full-Stack Developer | Passionate about creating impactful web experiences | IOT Enthusiast",
     about: `Hello! I'm Ankan Maity, a passionate full-stack developer with a deep passion for building scalable, 
     efficient, and impactful digital experiences. I enjoy turning complex problems into simple, 
