@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import Navbar from './components/navbar';
+import Navbar from './components/NavbarComponet';
 import HeroSection from './sections/HeroSection';
 import AboutSection from './sections/AboutSection';
 import SkillsSection from './sections/SkillsSection';
