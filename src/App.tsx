@@ -1,10 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
-import Navbar from './components/NavbarComponet';
-import HeroSection from './sections/HeroSection';
-import AboutSection from './sections/AboutSection';
-import SkillsSection from './sections/SkillsSection';
-import ProjectsSection from './sections/ProjectsSection';
-import ContactSection from './sections/ContactSection';
+import Navbar from './components/navbarComponet';
+import HeroSection from './sections/heroSection';
+import AboutSection from './sections/aboutSection';
+import SkillsSection from './sections/skillsSection';
+import ProjectsSection from './sections/projectsSection';
+import ContactSection from './sections/contactSection';
 
 type SectionName = 'home' | 'about' | 'skills' | 'projects' | 'contact';
 
@@ -62,13 +62,21 @@ const App = () => {
   const portfolioData = {
     name: "Ankan Maity",
     profileImage: "https://media.licdn.com/dms/image/v2/D4D03AQHKfZxxO8L_sg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1693981299357?e=1757548800&v=beta&t=m4JZv0Vggk7mYc2B-AqN7ivh4x4HIo-BzydvI6tXGGk",
-    tagline: "Full-Stack Developer | Passionate about creating impactful web experiences.",
-    about: "Hello! I'm Ankan Maity, a passionate full-stack developer...",
+    tagline: "Full-Stack Developer | Passionate about creating impactful web experiences | IOT Enthusiast",
+    about: `Hello! I'm Ankan Maity, a passionate full-stack developer with a deep passion for building scalable, 
+    efficient, and impactful digital experiences. I enjoy turning complex problems into simple, 
+    elegant solutions — from designing responsive front-end interfaces to architecting robust backend systems.`,
+
     skills: [
       {
         id:1,
         title: "languages",
-        items: ["JavaScript", "TypeScript", "Python", "C#", "Java"]
+        items: ["C/C++", "JavaScript", "TypeScript", "C#"]
+      },
+      {
+        id: 8,
+        title: "web technologies",
+        items: ["HTML", "CSS", "Tailwind CSS", "Bootstrap", "Material UI", "Shadcn UI"]
       },
       {
         id:2,
@@ -83,13 +91,29 @@ const App = () => {
       {
         id:4,
         title: "tools",
-        items: ["Git", "Docker"]
+        items: ["Git","Github", "Docker"]
+      },
+      {
+        id: 5,
+        title: "frameworks",
+        items: ["React", "Node.js", "Express.js"]
+      },
+      {
+        id: 6,
+        title: "IOT Boards",
+        items: ["Arduino Uno", "Esp32", "Raspberry Pi 5"]
+      },
+      {
+        id:7,
+        title: "other",
+        items: ["REST APIs", "Microservices", "IOT"]
       }
     ],
+
     projects: [
       {
         id: 1,
-        title: "EcoBin – IoT-Based Smart Waste Management System",
+        title: "♻️ EcoBin–IoT-Based Smart Waste Management System",
         description: ` EcoBin is a full-stack waste management solution
           designed using a microservices architecture. The backend is
           built with .NET Web API and PostgreSQL, while the
@@ -98,15 +122,33 @@ const App = () => {
           role-based authentication for Admins, Collectors, Users, and
           Guests.`,
         link: "https://github.com/Ankan5960/EcoBin",
-        image: "https://placehold.co/400x250/007bff/ffffff?text=Project+1"
+        image: "public/images/ecobin.jpg"
       },
       {
         id: 2,
-        title: "Task Management App",
-        description: "Drag-and-drop task manager.",
-        link: "#",
-        image: "https://placehold.co/400x250/28a745/ffffff?text=Project+2"
+        title: "🗳️ Fingerprint-based-electronic-voting-machine",
+        description: `A Fingerprint
+          Based Electronic Voting Machine (EVM) integrated
+          biometric technology for enhanced security. Voters
+          authenticate their identity using fingerprints, ensuring that
+          only eligible voters can cast their votes. This system aims to
+          prevent electoral fraud, improve accuracy, and streamline the
+          voting process, making elections more secure and efficient`,
+        link: "https://github.com/Ankan5960/Fingerprint-based-electronic-voting-machine",
+        image: "https://github.com/Ankan5960/Fingerprint-based-electronic-voting-machine/raw/main/circuit-diagram/circuit.png"
       },
+      {
+        id: 3,
+        title: "📡 Fronted Website for Business",
+        description: `A fronted website for
+          "Maity Enterprise" which is providing fiber optic connection
+          to users. Users can see their location on this website, and
+          also find the plans. New users can find the nearest Optical
+          splitters from it.
+          `,
+        link: "https://maity-enterprise.netlify.app/Home",
+        image: "public/images/maityenterprice.png"
+      }
     ],
     contact: {
       email: "maityankan55@gmail.com",

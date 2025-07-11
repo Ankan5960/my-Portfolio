@@ -1,9 +1,10 @@
 // sections/ContactSection.tsx
 import React, { useEffect, useState } from 'react';
-import { Mail, Github, Linkedin, Twitter } from 'lucide-react';
+import { Mail,PhoneCall, Github, Linkedin, Twitter } from 'lucide-react';
 
 type ContactInfo = {
   email: string;
+  phone: string;
   github: string;
   linkedin: string;
   twitter: string;
@@ -49,6 +50,13 @@ const ContactSection = ({ sectionRef, contact }: ContactSectionProps) => {
           Feel free to reach out if you have any questions or just want to connect!
         </p>
         <div className="flex justify-center space-x-6 mb-8">
+          <a
+            href={`tel:${contact.phone}`}
+            className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-all duration-200 transform hover:scale-110"
+            aria-label="phone"
+          >
+            <PhoneCall size={36} />
+          </a>
           <a
             href={`mailto:${contact.email}`}
             className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-all duration-200 transform hover:scale-110"
