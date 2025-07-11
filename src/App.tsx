@@ -122,7 +122,7 @@ const App = () => {
           role-based authentication for Admins, Collectors, Users, and
           Guests.`,
         link: "https://github.com/Ankan5960/EcoBin",
-        image: "public/images/ecobin.jpg"
+        image: "/images/ecobin.jpg"
       },
       {
         id: 2,
@@ -147,7 +147,7 @@ const App = () => {
           splitters from it.
           `,
         link: "https://maity-enterprise.netlify.app/Home",
-        image: "public/images/maityenterprice.png"
+        image: "/images/maityenterprice.png"
       }
     ],
     contact: {
