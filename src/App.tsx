@@ -154,7 +154,7 @@ const App = () => {
       email: "maityankan55@gmail.com",
       phone: "+91 8509640363",
       github: "https://github.com/Ankan5960",
-      linkedin: "www.linkedin.com/in/ankan-maity-a1b44927a",
+      linkedin: "https://www.linkedin.com/in/ankan-maity-a1b44927a/",
       twitter: "https://x.com/AnkanMa54350416",
     }
   };
