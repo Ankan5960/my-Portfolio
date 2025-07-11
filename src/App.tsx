@@ -1,10 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
-import Navbar from './components/navbarComponet';
-import HeroSection from './sections/heroSection';
-import AboutSection from './sections/aboutSection';
-import SkillsSection from './sections/skillsSection';
-import ProjectsSection from './sections/projectsSection';
-import ContactSection from './sections/contactSection';
+import Navbar from './components/NavbarComponet';
+import HeroSection from './sections/HeroSection';
+import AboutSection from './sections/AboutSection';
+import SkillsSection from './sections/SkillsSection';
+import ProjectsSection from './sections/ProjectsSection';
+import ContactSection from './sections/ContactSection';
 
 type SectionName = 'home' | 'about' | 'skills' | 'projects' | 'contact';
 
