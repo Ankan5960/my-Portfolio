@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import DownloadCVButton from '../components/DownloadCVButton';
 
 type HeroSectionProps = {
   sectionRef: React.RefObject<HTMLElement>;
@@ -62,6 +63,9 @@ const HeroSection = ({ sectionRef, data, scrollToSection }: HeroSectionProps) =>
         >
           View My Work
         </button>
+        <div className="block md:hidden mt-1">
+          <DownloadCVButton />
+        </div>
       </div>
     </section>
   );

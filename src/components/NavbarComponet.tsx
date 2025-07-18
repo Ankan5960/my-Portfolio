@@ -1,8 +1,9 @@
 // components/Navbar.tsx
 import React from 'react';
 import { Home, User, Code, Briefcase, Mail } from 'lucide-react';
+import DownloadCVButton from './DownloadCVButton';
 
-type SectionName = 'home' | 'about' | 'skills' | 'projects' | 'contact';
+type SectionName = 'home' | 'about' | 'skills' | 'projects' | 'contact' ;
 
 const Navbar = ({ activeSection, scrollToSection }: {
   activeSection: SectionName,
@@ -32,6 +33,9 @@ const Navbar = ({ activeSection, scrollToSection }: {
         <NavItem icon={Code} label="Skills" section="skills" />
         <NavItem icon={Briefcase} label="Projects" section="projects" />
         <NavItem icon={Mail} label="Contact" section="contact" />
+        <div className="hidden md:block">
+          <DownloadCVButton />
+        </div>
       </div>
     </nav>
   );
