@@ -1,8 +1,9 @@
 // components/Navbar.tsx
 import React from 'react';
-import { Home, User, Code, Briefcase, Mail } from 'lucide-react';
+import { Home, User, Code, Briefcase, Mail, School } from 'lucide-react';
+import type { SectionName } from '../App';
 
-type SectionName = 'home' | 'about' | 'skills' | 'projects' | 'contact';
+
 
 const Navbar = ({ activeSection, scrollToSection }: {
   activeSection: SectionName,
@@ -31,6 +32,7 @@ const Navbar = ({ activeSection, scrollToSection }: {
         <NavItem icon={User} label="About" section="about" />
         <NavItem icon={Code} label="Skills" section="skills" />
         <NavItem icon={Briefcase} label="Projects" section="projects" />
+        <NavItem icon={School} label="Education" section="education" />
         <NavItem icon={Mail} label="Contact" section="contact" />
       </div>
     </nav>

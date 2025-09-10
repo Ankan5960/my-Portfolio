@@ -5,15 +5,17 @@ import AboutSection from './sections/AboutSection';
 import SkillsSection from './sections/SkillsSection';
 import ProjectsSection from './sections/ProjectsSection';
 import ContactSection from './sections/ContactSection';
-import { portfolioData } from './Data/PortfolioData';
+import { portfolioData } from './data/PortfolioData';
+import EducationSection from './sections/EducationSection';
 
-type SectionName = 'home' | 'about' | 'skills' | 'projects' | 'contact';
+export type SectionName = 'home' | 'about' | 'skills' | 'projects' | "education" | 'contact';
 
 const App = () => {
   const homeRef = useRef<HTMLElement>(null!);
   const aboutRef = useRef<HTMLElement>(null!);
   const skillsRef = useRef<HTMLElement>(null!);
   const projectsRef = useRef<HTMLElement>(null!);
+  const educationRef = useRef<HTMLElement>(null!);
   const contactRef = useRef<HTMLElement>(null!);
 
   const sectionRefs: Record<SectionName, React.RefObject<HTMLElement>> = {
@@ -21,6 +23,7 @@ const App = () => {
     about: aboutRef,
     skills: skillsRef,
     projects: projectsRef,
+    education: educationRef,
     contact: contactRef,
   };
 
@@ -65,8 +68,16 @@ const App = () => {
       <Navbar activeSection={activeSection} scrollToSection={scrollToSection} />
       <HeroSection sectionRef={homeRef} data={portfolioData} scrollToSection={scrollToSection} />
       <AboutSection sectionRef={aboutRef} about={portfolioData.about} />
-      <SkillsSection sectionRef={skillsRef} skills={portfolioData.skills} />
+      <SkillsSection
+        sectionRef={skillsRef}
+        skills={portfolioData.skills.map(skill => ({
+          id: (skill.id ?? skill.iD) as number,
+          title: skill.title,
+          items: skill.items,
+        }))}
+      />
       <ProjectsSection sectionRef={projectsRef} projects={portfolioData.projects} />
+      <EducationSection sectionRef={educationRef} education={portfolioData.education} certifications={portfolioData.Certifications} />
       <ContactSection sectionRef={contactRef} contact={portfolioData.contact} />
 
       <footer className="text-center py-4 text-sm fixed bottom-0 left-0 right-0 md:relative">
