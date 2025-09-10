@@ -15,7 +15,7 @@ type ContactSectionProps = {
   contact: ContactInfo;
 };
 
-const ContactSection = ({ sectionRef, contact }: ContactSectionProps) => {
+const ContactSection: React.FC<ContactSectionProps> = ({ sectionRef, contact }: ContactSectionProps) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {

@@ -5,11 +5,11 @@ import type { SectionName } from '../App';
 
 
 
-const Navbar = ({ activeSection, scrollToSection }: {
+const Navbar: React.FC<any> = ({ activeSection, scrollToSection }: {
   activeSection: SectionName,
   scrollToSection: (section: SectionName) => void
 }) => {
-  const NavItem = ({ icon: Icon, label, section }: {
+  const NavItem:React.FC<any> = ({ icon: Icon, label, section }: {
     icon: React.ElementType,
     label: string,
     section: SectionName

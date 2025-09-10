@@ -6,7 +6,7 @@ type AboutSectionProps = {
   about: string;
 };
 
-const AboutSection = ({ sectionRef, about }: AboutSectionProps) => {
+const AboutSection: React.FC<AboutSectionProps> = ({ sectionRef, about }: AboutSectionProps) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {

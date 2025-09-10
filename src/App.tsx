@@ -5,12 +5,12 @@ import AboutSection from './sections/AboutSection';
 import SkillsSection from './sections/SkillsSection';
 import ProjectsSection from './sections/ProjectsSection';
 import ContactSection from './sections/ContactSection';
-import { portfolioData } from './data/PortfolioData';
 import EducationSection from './sections/EducationSection';
+import { portfolioData } from './data/PortfolioData';
 
 export type SectionName = 'home' | 'about' | 'skills' | 'projects' | "education" | 'contact';
 
-const App = () => {
+const App:React.FC = () => {
   const homeRef = useRef<HTMLElement>(null!);
   const aboutRef = useRef<HTMLElement>(null!);
   const skillsRef = useRef<HTMLElement>(null!);

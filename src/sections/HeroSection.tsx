@@ -10,7 +10,7 @@ type HeroSectionProps = {
   scrollToSection: (section: 'projects') => void;
 };
 
-const HeroSection = ({ sectionRef, data, scrollToSection }: HeroSectionProps) => {
+const HeroSection: React.FC<HeroSectionProps> = ({ sectionRef, data, scrollToSection }: HeroSectionProps) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {

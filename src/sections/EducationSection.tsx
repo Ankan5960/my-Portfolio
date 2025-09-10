@@ -18,7 +18,7 @@ type EducationSectionProps = {
   certifications: CertificationItem[];
 };
 
-const EducationSection = ({
+const EducationSection: React.FC<EducationSectionProps> = ({
   sectionRef,
   education,
   certifications,

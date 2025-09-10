@@ -12,7 +12,7 @@ type SkillsSectionProps = {
   skills: Skill[];
 };
 
-const SkillsSection = ({ sectionRef, skills }: SkillsSectionProps) => {
+const SkillsSection: React.FC<SkillsSectionProps> = ({ sectionRef, skills }: SkillsSectionProps) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {

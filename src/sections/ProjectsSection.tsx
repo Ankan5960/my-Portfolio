@@ -14,7 +14,7 @@ type ProjectsSectionProps = {
   projects: Project[];
 };
 
-const ProjectsSection = ({ sectionRef, projects }: ProjectsSectionProps) => {
+const ProjectsSection: React.FC<ProjectsSectionProps> = ({ sectionRef, projects }: ProjectsSectionProps) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
