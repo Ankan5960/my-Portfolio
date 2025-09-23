@@ -11,19 +11,20 @@ export const portfolioData = {
     {
       iD: 0,
       title: "CAD Customization",
-      items: ["AutoCAD using C#.net"],
+      items: ["AutoCAD Customization And design automation using C#.net"],
     },
     {
       id: 1,
-      title: "languages",
+      title: "Languages",
       items: ["C/C++", "JavaScript", "TypeScript", "C#", "Python"],
     },
     {
       id: 8,
-      title: "web technologies",
+      title: "Web technologies",
       items: [
         "HTML",
         "CSS",
+        "React",
         "Tailwind CSS",
         "Bootstrap",
         "Material UI",
@@ -33,23 +34,23 @@ export const portfolioData = {
     },
     {
       id: 2,
-      title: "cloud",
+      title: "Cloud",
       items: ["AWS", "Google Cloud"],
     },
     {
       id: 3,
-      title: "databases",
+      title: "Databases",
       items: ["PostgreSQL", "MySQL"],
     },
     {
       id: 4,
-      title: "tools",
+      title: "Tools",
       items: ["Git", "Github", "Docker"],
     },
     {
       id: 5,
-      title: "frameworks",
-      items: ["React", "Node.js", "Express.js", "ASP.NET Core" ],
+      title: "Frameworks",
+      items: ["Node.js", "Express.js", "ASP.NET Core" ],
     },
     {
       id: 6,
@@ -58,7 +59,7 @@ export const portfolioData = {
     },
     {
       id: 7,
-      title: "other",
+      title: "Other",
       items: ["REST APIs", "Microservices", "IOT"],
     },
   ],
