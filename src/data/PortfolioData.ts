@@ -125,13 +125,13 @@ export const portfolioData = {
     {
       id: 2, institution: "Nohari High School (H.S)",
       degree: "Higher Secondary (Class 11 & 12)",
-      year: "2018 - 2020",
+      year: "2019 - 2021",
     },
     {
       id: 3,
-      institution: "St. Thomas' School, Kolkata", 
+      institution: "Nohari High School (H.S)", 
       degree: "Secondary (Class 10)",
-      year: "2018",
+      year: "2019",
     },
   ],
   Certifications: [

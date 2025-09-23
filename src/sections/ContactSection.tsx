@@ -1,6 +1,7 @@
 // sections/ContactSection.tsx
-import React, { useEffect, useState } from 'react';
-import { Mail,PhoneCall, Github, Linkedin, Twitter } from 'lucide-react';
+import React, { useEffect, useState } from "react";
+import { Mail, PhoneCall, Github, Linkedin } from "lucide-react";
+import { XIcon } from "../assets/XIcon";
 
 type ContactInfo = {
   email: string;
@@ -15,7 +16,10 @@ type ContactSectionProps = {
   contact: ContactInfo;
 };
 
-const ContactSection: React.FC<ContactSectionProps> = ({ sectionRef, contact }: ContactSectionProps) => {
+const ContactSection: React.FC<ContactSectionProps> = ({
+  sectionRef,
+  contact,
+}: ContactSectionProps) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -42,54 +46,64 @@ const ContactSection: React.FC<ContactSectionProps> = ({ sectionRef, contact }: 
       ref={sectionRef}
       className={`min-h-screen flex items-center justify-center py-16 px-4 md:px-8 lg:px-16 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100
         transition-all duration-1000 ease-out
-        ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+        ${
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        }`}
     >
       <div className="container mx-auto max-w-3xl text-center">
-        <h2 className="text-4xl font-bold text-center mb-10 text-blue-700 dark:text-blue-400">Get In Touch</h2>
+        <h2 className="text-4xl font-bold text-center mb-10 text-blue-700 dark:text-blue-400">
+          Get In Touch
+        </h2>
         <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-          Feel free to reach out if you have any questions or just want to connect!
+          Feel free to reach out if you have any questions or just want to
+          connect!
         </p>
         <div className="flex justify-center space-x-6 mb-8">
           <a
+            key={"phone"}
             href={`tel:${contact.phone}`}
             className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-all duration-200 transform hover:scale-110"
             aria-label="phone"
           >
-            <PhoneCall size={36} />
+            <PhoneCall key="phone" size={36} />
           </a>
           <a
+            key={"mail"}
             href={`mailto:${contact.email}`}
             className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-all duration-200 transform hover:scale-110"
             aria-label="Email"
           >
-            <Mail size={36} />
+            <Mail key="mail" size={36} />
           </a>
           <a
+            key={"github"}
             href={contact.github}
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-all duration-200 transform hover:scale-110"
             aria-label="GitHub"
           >
-            <Github size={36} />
+            <Github key="github" size={36} />
           </a>
           <a
+            key={"linkedin"}
             href={contact.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-all duration-200 transform hover:scale-110"
             aria-label="LinkedIn"
           >
-            <Linkedin size={36} />
+            <Linkedin key="linkedin" size={36} />
           </a>
           <a
+            key={"twitter"}
             href={contact.twitter}
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-all duration-200 transform hover:scale-110"
             aria-label="Twitter"
           >
-            <Twitter size={36} />
+            <XIcon key="twitter" size={34} />
           </a>
         </div>
       </div>
