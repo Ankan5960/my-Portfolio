@@ -1,14 +1,11 @@
 // sections/ContactSection.tsx
 import React, { useEffect, useState } from "react";
-import { Mail, PhoneCall, Github, Linkedin } from "lucide-react";
-import { XIcon } from "../assets/XIcon";
+import { Mail, Github, Linkedin } from "lucide-react";
 
 type ContactInfo = {
   email: string;
-  phone: string;
   github: string;
   linkedin: string;
-  twitter: string;
 };
 
 type ContactSectionProps = {
@@ -60,14 +57,6 @@ const ContactSection: React.FC<ContactSectionProps> = ({
         </p>
         <div className="flex justify-center space-x-6 mb-8">
           <a
-            key={"phone"}
-            href={`tel:${contact.phone}`}
-            className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-all duration-200 transform hover:scale-110"
-            aria-label="phone"
-          >
-            <PhoneCall key="phone" size={36} />
-          </a>
-          <a
             key={"mail"}
             href={`mailto:${contact.email}`}
             className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-all duration-200 transform hover:scale-110"
@@ -94,16 +83,6 @@ const ContactSection: React.FC<ContactSectionProps> = ({
             aria-label="LinkedIn"
           >
             <Linkedin key="linkedin" size={36} />
-          </a>
-          <a
-            key={"twitter"}
-            href={contact.twitter}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-all duration-200 transform hover:scale-110"
-            aria-label="Twitter"
-          >
-            <XIcon key="twitter" size={34} />
           </a>
         </div>
       </div>

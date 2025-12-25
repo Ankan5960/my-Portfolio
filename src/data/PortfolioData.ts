@@ -2,17 +2,12 @@ export const portfolioData = {
   name: "Ankan Maity",
   profileImage: "/images/profile/profile.jpg",
   tagline:
-    "CAD Customization | Full-Stack Developer | Passionate about creating impactful web experiences and CAD Customization | IOT Enthusiast",
-  about: `Hello! I'm Ankan Maity, a CAD Customization Specialist and Full-Stack Developer with a strong focus on building scalable, 
+    "Full-Stack Developer | Passionate about creating impactful web experiences | IOT Enthusiast | CAD Customization",
+  about: `Hello! I'm Ankan Maity, a Full-Stack Developer with a strong focus on building scalable, 
   efficient, and impactful digital solutions. I excel at streamlining complex CAD workflows, crafting responsive front-end interfaces, 
   and architecting robust backend systems — always aiming to deliver simple and elegant outcomes.`,
 
   skills: [
-    {
-      iD: 0,
-      title: "CAD Customization",
-      items: ["AutoCAD Customization And design automation using C#.net"],
-    },
     {
       id: 1,
       title: "Languages",
@@ -62,6 +57,11 @@ export const portfolioData = {
       title: "Other",
       items: ["REST APIs", "Microservices", "IOT"],
     },
+    {
+      iD: 8,
+      title: "CAD Customization",
+      items: ["AutoCAD Customization And design automation using C#.net"],
+    }
   ],
 
   projects: [
@@ -150,9 +150,7 @@ export const portfolioData = {
   ],
   contact: {
     email: "maityankan55@gmail.com",
-    phone: "+91 8509640363",
     github: "https://github.com/Ankan5960",
     linkedin: "https://www.linkedin.com/in/ankan-maity-a1b44927a/",
-    twitter: "https://x.com/AnkanMa54350416",
   },
 };
