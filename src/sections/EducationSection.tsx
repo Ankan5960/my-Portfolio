@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from "react";
+// sections/EducationSection.tsx — Task 8: Education with dates, certifications
+import React, { useEffect, useState } from 'react';
+import { GraduationCap, Award } from 'lucide-react';
 
 type EducationItem = {
+  id: number;
   institution: string;
   degree: string;
+  detail: string | null;
   year: string;
 };
 
 type CertificationItem = {
+  id: number;
   name: string;
   organization: string;
   year: string;
@@ -22,7 +27,7 @@ const EducationSection: React.FC<EducationSectionProps> = ({
   sectionRef,
   education,
   certifications,
-}: EducationSectionProps) => {
+}) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -35,71 +40,92 @@ const EducationSection: React.FC<EducationSectionProps> = ({
       },
       { threshold: 0.1 }
     );
-
     if (sectionRef.current) observer.observe(sectionRef.current);
-
-    return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
-    };
+    return () => { if (sectionRef.current) observer.unobserve(sectionRef.current); };
   }, [sectionRef]);
 
   return (
     <section
       id="education"
       ref={sectionRef}
-      className={`min-h-screen flex items-center justify-center py-16 px-4 md:px-8 lg:px-16 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100
-        transition-all duration-1000 ease-out
-        ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      }`}
+      className="section-root"
+      aria-labelledby="education-heading"
     >
-      <div className="container mx-auto max-w-4xl text-center">
-        <h2 className="text-4xl font-bold mb-10 text-blue-700 dark:text-blue-400">
-          Education & Certifications
-        </h2>
-        <div className="grid md:grid-cols-2 gap-12">
+      <div
+        className="section-inner"
+        style={{
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
+          transition: 'opacity 0.6s ease, transform 0.6s ease',
+        }}
+      >
+        <div className="section-heading">
+          <h2 id="education-heading">Education & Certifications</h2>
+        </div>
+
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(320px, 100%), 1fr))',
+            gap: '2.5rem',
+          }}
+        >
+          {/* Education */}
           <div>
-            <h3 className="text-3xl font-semibold mb-6 text-gray-800 dark:text-gray-200">
+            <h3
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                fontSize: '1rem',
+                fontWeight: 600,
+                color: 'var(--col-muted)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.08em',
+                marginBottom: '1.25rem',
+              }}
+            >
+              <GraduationCap size={18} aria-hidden="true" />
               Education
             </h3>
-            <div className="space-y-6">
-              {education.map((item, index) => (
-                <div
-                  key={index}
-                  className="p-6 rounded-lg shadow-lg bg-white dark:bg-gray-800 transition-transform transform hover:scale-105 duration-300"
-                >
-                  <h4 className="text-xl font-bold text-gray-900 dark:text-gray-100">
-                    {item.degree}
-                  </h4>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    {item.institution}
-                  </p>
-                  <p className="text-sm text-gray-500 dark:text-gray-500 mt-2">
-                    {item.year}
-                  </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              {education.map((item) => (
+                <div key={item.id} className="edu-card">
+                  <p className="edu-degree">{item.degree}</p>
+                  <p className="edu-inst">{item.institution}</p>
+                  <p className="edu-year">{item.year}</p>
+                  {item.detail && (
+                    <span className="edu-cgpa">{item.detail}</span>
+                  )}
                 </div>
               ))}
             </div>
           </div>
+
+          {/* Certifications */}
           <div>
-            <h3 className="text-3xl font-semibold mb-6 text-gray-800 dark:text-gray-200">
+            <h3
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                fontSize: '1rem',
+                fontWeight: 600,
+                color: 'var(--col-muted)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.08em',
+                marginBottom: '1.25rem',
+              }}
+            >
+              <Award size={18} aria-hidden="true" />
               Certifications
             </h3>
-            <div className="space-y-6">
-              {certifications.map((item, index) => (
-                <div
-                  key={index}
-                  className="p-6 rounded-lg shadow-lg bg-white dark:bg-gray-800 transition-transform transform hover:scale-105 duration-300"
-                >
-                  <h4 className="text-xl font-bold text-gray-900 dark:text-gray-100">
-                    {item.name}
-                  </h4>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    {item.organization}
-                  </p>
-                  <p className="text-sm text-gray-500 dark:text-gray-500 mt-2">
-                    {item.year}
-                  </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              {certifications.map((item) => (
+                <div key={item.id} className="edu-card">
+                  <p className="edu-degree">{item.name}</p>
+                  <p className="edu-inst">{item.organization}</p>
+                  <p className="edu-year">{item.year}</p>
                 </div>
               ))}
             </div>

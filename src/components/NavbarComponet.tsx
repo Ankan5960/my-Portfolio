@@ -1,41 +1,115 @@
 // components/Navbar.tsx
-import React from 'react';
-import { Home, User, Code, Briefcase, Mail, School } from 'lucide-react';
+import React, { useState } from 'react';
 import type { SectionName } from '../App';
+import { FileText } from 'lucide-react';
+import { portfolioData } from '../data/PortfolioData';
 
+const NAV_ITEMS: { label: string; section: SectionName }[] = [
+  { label: 'Home', section: 'home' },
+  { label: 'About', section: 'about' },
+  { label: 'Skills', section: 'skills' },
+  { label: 'Projects', section: 'projects' },
+  { label: 'Education', section: 'education' },
+  { label: 'Contact', section: 'contact' },
+];
 
+const Navbar: React.FC<{
+  activeSection: SectionName;
+  scrollToSection: (section: SectionName) => void;
+}> = ({ activeSection, scrollToSection }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
 
-const Navbar: React.FC<any> = ({ activeSection, scrollToSection }: {
-  activeSection: SectionName,
-  scrollToSection: (section: SectionName) => void
-}) => {
-  const NavItem:React.FC<any> = ({ icon: Icon, label, section }: {
-    icon: React.ElementType,
-    label: string,
-    section: SectionName
-  }) => (
-    <button
-      onClick={() => scrollToSection(section)}
-      className={`flex flex-col items-center p-2 rounded-lg transition-colors duration-300
-        ${activeSection === section ? 'text-blue-600 bg-blue-50 dark:bg-blue-900' : 'text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400'}
-        md:flex-row md:space-x-2 md:px-4 md:py-2`}
-    >
-      <Icon size={20} />
-      <span className="text-xs md:text-base mt-1 md:mt-0">{label}</span>
-    </button>
-  );
+  const handleNav = (section: SectionName) => {
+    scrollToSection(section);
+    setMenuOpen(false);
+  };
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-lg md:relative md:top-0 md:left-0 md:right-auto md:w-full md:shadow-none z-50">
-      <div className="container mx-auto px-4 py-3 flex justify-around md:justify-center md:space-x-8">
-        <NavItem icon={Home} label="Home" section="home" />
-        <NavItem icon={User} label="About" section="about" />
-        <NavItem icon={Code} label="Skills" section="skills" />
-        <NavItem icon={Briefcase} label="Projects" section="projects" />
-        <NavItem icon={School} label="Education" section="education" />
-        <NavItem icon={Mail} label="Contact" section="contact" />
+    <>
+      <nav className="navbar" aria-label="Main navigation">
+        <div className="navbar-inner">
+          {/* Logo / Brand */}
+          <a
+            href="#home"
+            className="navbar-logo"
+            onClick={(e) => { e.preventDefault(); handleNav('home'); }}
+            aria-label="Ankan Maity — back to top"
+          >
+            Ankan<span>.</span>
+          </a>
+
+          {/* Desktop links */}
+          <ul className="navbar-links" role="list">
+            {NAV_ITEMS.map(({ label, section }) => (
+              <li key={section}>
+                <button
+                  className={`nav-btn${activeSection === section ? ' active' : ''}`}
+                  onClick={() => handleNav(section)}
+                  aria-current={activeSection === section ? 'page' : undefined}
+                >
+                  {label}
+                </button>
+              </li>
+            ))}
+            {/* Resume link in nav */}
+            <li>
+              <a
+                href={portfolioData.contact.resume}
+                download
+                className="btn btn-primary"
+                style={{ padding: '0.4rem 0.9rem', fontSize: '0.85rem', minHeight: '36px' }}
+                aria-label="Download resume PDF"
+              >
+                <FileText size={15} aria-hidden="true" />
+                Resume
+              </a>
+            </li>
+          </ul>
+
+          {/* Hamburger (mobile) */}
+          <button
+            className={`hamburger${menuOpen ? ' open' : ''}`}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile menu */}
+      <div
+        id="mobile-menu"
+        className={`mobile-menu${menuOpen ? ' open' : ''}`}
+        aria-hidden={!menuOpen}
+      >
+        {NAV_ITEMS.map(({ label, section }) => (
+          <button
+            key={section}
+            className={`nav-btn${activeSection === section ? ' active' : ''}`}
+            onClick={() => handleNav(section)}
+            aria-current={activeSection === section ? 'page' : undefined}
+          >
+            {label}
+          </button>
+        ))}
+        <a
+          href={portfolioData.contact.resume}
+          download
+          className="btn btn-primary"
+          style={{ marginTop: '0.5rem', width: '100%', justifyContent: 'center' }}
+          aria-label="Download resume PDF"
+          onClick={() => setMenuOpen(false)}
+        >
+          <FileText size={16} aria-hidden="true" />
+          Download Resume
+        </a>
       </div>
-    </nav>
+    </>
   );
 };
 

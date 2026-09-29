@@ -1,18 +1,22 @@
-// sections/SkillsSection.tsx
+// sections/SkillsSection.tsx — Task 6: Proven, grouped, no miscategorized items
 import React, { useEffect, useState } from 'react';
 
-type Skill = {
-  id: number;
-  title: string;
-  items: string[];
+type SkillItem = {
+  label: string;
+  project: string | null;
+};
+
+type SkillsData = {
+  strong: SkillItem[];
+  working: SkillItem[];
 };
 
 type SkillsSectionProps = {
   sectionRef: React.RefObject<HTMLElement>;
-  skills: Skill[];
+  skills: SkillsData;
 };
 
-const SkillsSection: React.FC<SkillsSectionProps> = ({ sectionRef, skills }: SkillsSectionProps) => {
+const SkillsSection: React.FC<SkillsSectionProps> = ({ sectionRef, skills }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -25,46 +29,67 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ sectionRef, skills }: Ski
       },
       { threshold: 0.1 }
     );
-
     if (sectionRef.current) observer.observe(sectionRef.current);
-
-    return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
-    };
+    return () => { if (sectionRef.current) observer.unobserve(sectionRef.current); };
   }, [sectionRef]);
 
   return (
     <section
       id="skills"
       ref={sectionRef}
-      className={`min-h-screen flex items-center justify-center py-16 px-4 md:px-8 lg:px-16 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100
-        transition-all duration-1000 ease-out
-        ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+      className="section-root"
+      aria-labelledby="skills-heading"
     >
-      <div className="container mx-auto max-w-4xl text-center">
-        <h2 className="text-4xl font-bold mb-10 text-blue-700 dark:text-blue-400">My Skills</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">  {/* Responsive grid layout */}
-          {skills.map((skill) => (
-            <div
-              key={skill.id}
-              className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6
-                         text-left transform transition-transform duration-300 ease-in-out hover:scale-103 hover:shadow-xl"
-            >
-              <h3 className="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-300 border-b pb-2 border-blue-200 dark:border-blue-700">
-                {skill.title}
-              </h3>
-              {skill.items.length > 0 ? (
-                <ul className="text-lg text-gray-700 dark:text-gray-300 list-disc list-inside space-y-1">
-                  {skill.items.map((item, itemIndex) => (
-                    <li key={itemIndex}>{item}</li>
-                  ))}
-                </ul>
-              ) : (
-                <p className="text-gray-500 dark:text-gray-400">No specific items listed.</p>
-              )}
-            </div>
-          ))}
+      <div
+        className="section-inner"
+        style={{
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
+          transition: 'opacity 0.6s ease, transform 0.6s ease',
+        }}
+      >
+        <div className="section-heading">
+          <h2 id="skills-heading">Skills</h2>
         </div>
+
+        {/* Strong / proven skills */}
+        <div className="skills-group">
+          <p className="skills-group-label">Strong — used in shipped projects</p>
+          <div className="chips-wrap" role="list">
+            {skills.strong.map((skill) => (
+              <span
+                key={skill.label}
+                className="chip"
+                role="listitem"
+                title={skill.project ? `Used in: ${skill.project}` : undefined}
+              >
+                {skill.label}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Working knowledge */}
+        <div className="skills-group">
+          <p className="skills-group-label">Working knowledge</p>
+          <div className="chips-wrap" role="list">
+            {skills.working.map((skill) => (
+              <span
+                key={skill.label}
+                className="chip chip-blue"
+                role="listitem"
+                title={skill.project ? `Used in: ${skill.project}` : undefined}
+              >
+                {skill.label}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Note */}
+        <p style={{ fontSize: '0.8rem', color: 'var(--col-muted-2)', marginTop: '1rem' }}>
+          Hover a chip to see which project it comes from.
+        </p>
       </div>
     </section>
   );

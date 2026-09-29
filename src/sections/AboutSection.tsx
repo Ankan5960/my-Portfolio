@@ -1,13 +1,14 @@
-// sections/AboutSection.tsx
-import React, { useEffect, useState } from 'react';
+// sections/AboutSection.tsx — Task 5: Concrete, short, no adjective stacking
+import React, { useEffect, useState, useRef } from 'react';
 
 type AboutSectionProps = {
   sectionRef: React.RefObject<HTMLElement>;
-  about: string;
+  about: string[];
 };
 
-const AboutSection: React.FC<AboutSectionProps> = ({ sectionRef, about }: AboutSectionProps) => {
+const AboutSection: React.FC<AboutSectionProps> = ({ sectionRef, about }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const innerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -17,29 +18,39 @@ const AboutSection: React.FC<AboutSectionProps> = ({ sectionRef, about }: AboutS
           observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.15 }
     );
-
     if (sectionRef.current) observer.observe(sectionRef.current);
-
-    return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
-    };
+    return () => { if (sectionRef.current) observer.unobserve(sectionRef.current); };
   }, [sectionRef]);
 
   return (
     <section
       id="about"
       ref={sectionRef}
-      className={`min-h-screen flex items-center justify-center py-16 px-4 md:px-8 lg:px-16 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100
-        transition-all duration-1000 ease-out
-        ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+      className="section-root about-root"
+      aria-labelledby="about-heading"
     >
-      <div className="container mx-auto max-w-4xl text-center">
-        <h2 className="text-4xl font-bold mb-10 text-blue-700 dark:text-blue-400">About Me</h2>
-        <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-          {about}
-        </p>
+      <div
+        className="section-inner"
+        ref={innerRef}
+        style={{
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
+          transition: 'opacity 0.6s ease, transform 0.6s ease',
+        }}
+      >
+        <div className="section-heading">
+          <h2 id="about-heading">About me</h2>
+        </div>
+
+        <div style={{ maxWidth: '68ch' }}>
+          {about.map((paragraph, i) => (
+            <p key={i} className="about-prose" style={{ marginBottom: i < about.length - 1 ? '1rem' : 0 }}>
+              {paragraph}
+            </p>
+          ))}
+        </div>
       </div>
     </section>
   );

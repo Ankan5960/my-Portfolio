@@ -1,12 +1,16 @@
-// sections/ProjectsSection.tsx
+// sections/ProjectsSection.tsx — Task 4: Stack chips + Live/Source buttons
 import React, { useEffect, useState } from 'react';
+import { Github, ExternalLink } from 'lucide-react';
 
 type Project = {
   id: number;
   title: string;
   description: string;
-  link: string;
+  stack: string[];
+  sourceUrl: string | null;
+  liveUrl: string | null;
   image: string;
+  imageCaption: string;
 };
 
 type ProjectsSectionProps = {
@@ -14,7 +18,7 @@ type ProjectsSectionProps = {
   projects: Project[];
 };
 
-const ProjectsSection: React.FC<ProjectsSectionProps> = ({ sectionRef, projects }: ProjectsSectionProps) => {
+const ProjectsSection: React.FC<ProjectsSectionProps> = ({ sectionRef, projects }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -25,60 +29,131 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ sectionRef, projects 
           observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.08 }
     );
-
     if (sectionRef.current) observer.observe(sectionRef.current);
-
-    return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
-    };
+    return () => { if (sectionRef.current) observer.unobserve(sectionRef.current); };
   }, [sectionRef]);
 
   return (
     <section
       id="projects"
       ref={sectionRef}
-      className={`min-h-screen flex items-center justify-center py-16 px-4 md:px-8 lg:px-16 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100
-        transition-all duration-1000 ease-out
-        ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+      className="section-root about-root"
+      aria-labelledby="projects-heading"
     >
-      <div className="container mx-auto max-w-6xl">
-        <h2 className="text-4xl font-bold text-center mb-10 text-blue-700 dark:text-blue-400">My Projects</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div
+        className="section-inner"
+        style={{
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
+          transition: 'opacity 0.6s ease, transform 0.6s ease',
+        }}
+      >
+        <div className="section-heading">
+          <h2 id="projects-heading">Projects</h2>
+        </div>
+
+        <div className="projects-grid">
           {projects.map((project) => (
-            <div
-              key={project.id}
-              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-xl"
-            >
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-48 object-cover"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.onerror = null;
-                  target.src = "https://placehold.co/400x250/64748b/ffffff?text=Project";
-                }}
-              />
-              <div className="p-6">
-                <h3 className="text-2xl font-semibold mb-3 text-gray-800 dark:text-gray-100">{project.title}</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">{project.description}</p>
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-200 font-medium transition-all duration-200 hover:translate-x-1"
-                >
-                  View Project
-                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
+            <article key={project.id} className="card project-card" aria-label={project.title}>
+              {/* Project image */}
+              <div style={{ position: 'relative', overflow: 'hidden' }}>
+                <img
+                  src={project.image}
+                  alt={project.imageCaption}
+                  width="400"
+                  height="200"
+                  className="project-img"
+                  loading="lazy"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.onerror = null;
+                    target.src = 'https://placehold.co/400x200/161b22/8b949e?text=Project';
+                  }}
+                />
+                {/* Caption badge for circuit diagrams / non-screenshots */}
+                {project.imageCaption !== project.title && (
+                  <span
+                    style={{
+                      position: 'absolute',
+                      bottom: '8px',
+                      left: '8px',
+                      fontSize: '0.7rem',
+                      padding: '0.15rem 0.4rem',
+                      background: 'rgba(0,0,0,0.65)',
+                      color: '#e6edf3',
+                      borderRadius: '4px',
+                      fontFamily: 'var(--font-mono)',
+                    }}
+                  >
+                    {project.imageCaption}
+                  </span>
+                )}
               </div>
-            </div>
+
+              {/* Card body */}
+              <div className="project-card-body">
+                <h3 className="project-card-title">{project.title}</h3>
+                <p className="project-card-desc">{project.description}</p>
+
+                {/* Stack chips */}
+                <div className="project-card-chips" aria-label="Technology stack">
+                  {project.stack.map((tech) => (
+                    <span key={tech} className="chip">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Action buttons — pinned to bottom */}
+                <div className="project-card-actions">
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-primary"
+                      style={{ fontSize: '0.82rem', padding: '0.45rem 0.9rem', minHeight: '40px' }}
+                      aria-label={`Live demo of ${project.title}`}
+                      id={`project-live-${project.id}`}
+                    >
+                      <ExternalLink size={14} aria-hidden="true" />
+                      Live demo
+                    </a>
+                  )}
+                  {project.sourceUrl && (
+                    <a
+                      href={project.sourceUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-secondary"
+                      style={{ fontSize: '0.82rem', padding: '0.45rem 0.9rem', minHeight: '40px' }}
+                      aria-label={`Source code for ${project.title} on GitHub`}
+                      id={`project-source-${project.id}`}
+                    >
+                      <Github size={14} aria-hidden="true" />
+                      Source code
+                    </a>
+                  )}
+                </div>
+              </div>
+            </article>
           ))}
         </div>
+
+        {/* Footer note */}
+        <p style={{ marginTop: '2.5rem', fontSize: '0.85rem', color: 'var(--col-muted)' }}>
+          More experiments and learning projects on{' '}
+          <a
+            href="https://github.com/Ankan5960"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View more projects on GitHub"
+          >
+            GitHub →
+          </a>
+        </p>
       </div>
     </section>
   );

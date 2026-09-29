@@ -1,156 +1,138 @@
+// PortfolioData.ts — all facts sourced from owner; TODOs marked explicitly
+
 export const portfolioData = {
   name: "Ankan Maity",
   profileImage: "/images/profile/profile.jpg",
-  tagline:
-    "Full-Stack Developer | Passionate about creating impactful web experiences | IOT Enthusiast | CAD Customization",
-  about: `Hello! I'm Ankan Maity, a Full-Stack Developer with a strong focus on building scalable, 
-  efficient, and impactful digital solutions. I excel at streamlining complex CAD workflows, crafting responsive front-end interfaces, 
-  and architecting robust backend systems — always aiming to deliver simple and elegant outcomes.`,
 
-  skills: [
-    {
-      id: 1,
-      title: "Languages",
-      items: ["C/C++", "JavaScript", "TypeScript", "C#", "Python"],
-    },
-    {
-      id: 8,
-      title: "Web technologies",
-      items: [
-        "HTML",
-        "CSS",
-        "React",
-        "Tailwind CSS",
-        "Bootstrap",
-        "Material UI",
-        "Shadcn UI",
-        "Three.js",
-      ],
-    },
-    {
-      id: 2,
-      title: "Cloud",
-      items: ["AWS", "Google Cloud"],
-    },
-    {
-      id: 3,
-      title: "Databases",
-      items: ["PostgreSQL", "MySQL"],
-    },
-    {
-      id: 4,
-      title: "Tools",
-      items: ["Git", "Github", "Docker"],
-    },
-    {
-      id: 5,
-      title: "Frameworks",
-      items: ["Node.js", "Express.js", "ASP.NET Core" ],
-    },
-    {
-      id: 6,
-      title: "IOT Boards",
-      items: ["Arduino Uno", "Esp32", "Raspberry Pi 5"],
-    },
-    {
-      id: 7,
-      title: "Other",
-      items: ["REST APIs", "Microservices", "IOT"],
-    },
-    {
-      iD: 8,
-      title: "CAD Customization",
-      items: ["AutoCAD Customization And design automation using C#.net"],
-    }
+  // ---------- Hero ----------
+  headline: "Full-stack developer: React, TypeScript, .NET, PostgreSQL",
+  subline: "I build IoT-connected web systems and CAD automation tools.",
+  // TODO(Ankan): Confirm availability wording; add "Remote / Kolkata" if desired
+  availabilityBadge: "Open to full-time roles",
+
+  // ---------- Contact / Social (real URLs from repo) ----------
+  contact: {
+    email: "maityankan55@gmail.com",
+    github: "https://github.com/Ankan5960",
+    linkedin: "https://www.linkedin.com/in/ankan-maity-a1b44927a/",
+    // TODO(Ankan): Supply the resume PDF at public/Ankan-Maity-Resume.pdf
+    resume: "/Ankan-Maity-Resume.pdf",
+  },
+
+  // ---------- About ----------
+  // Rewritten: concrete, short, no adjective stacking (Task 5)
+  about: [
+    `I'm a full-stack developer. My main project, EcoBin, is a .NET and React system that connects IoT bins to a routing dashboard—built with microservices, Docker, and role-based auth.`,
+    `I also write AutoCAD plugins in C# that automate repetitive design workflows using the Autodesk Platform Services API.`, // TODO(Ankan): add what was automated, for whom
+    `I'm looking for a full-time software engineering role where I can work across the stack.`,
   ],
 
+  // ---------- Skills (Task 6: proven, grouped) ----------
+  skills: {
+    strong: [
+      { label: "TypeScript",      project: "EcoBin" },
+      { label: "React",           project: "EcoBin" },
+      { label: "ASP.NET Core",    project: "EcoBin" },
+      { label: "PostgreSQL",      project: "EcoBin" },
+      { label: "Docker",          project: "EcoBin" },
+      { label: "REST APIs",       project: "EcoBin" },
+      { label: "Microservices",   project: "EcoBin" },
+      { label: "Git & GitHub",    project: "All projects" },
+      { label: "C#",              project: "CAD tools" },
+    ],
+    working: [
+      { label: "Node.js / Express", project: null },
+      { label: "Python",            project: null },
+      { label: "C / C++",           project: "Voting machine" },
+      { label: "Arduino / ESP32",   project: "Voting machine" },
+      { label: "Raspberry Pi",      project: null },
+      // TODO(Ankan): Include AWS/GCP only if actually used in a project
+      // TODO(Ankan): Include Three.js only if actually used in a project
+    ],
+  },
+
+  // ---------- Projects (Tasks 2, 3, 4) ----------
+  // Project 4 (tutorial card) removed entirely
   projects: [
     {
       id: 1,
-      title: "♻️ EcoBin–IoT-Based Smart Waste Management System",
-      description: ` EcoBin is a full-stack waste management solution
-          designed using a microservices architecture. The backend is
-          built with .NET Web API and PostgreSQL, while the
-          frontend uses React (TypeScript) and Tailwind CSS. The
-          system is containerized with Docker and implements
-          role-based authentication for Admins, Collectors, Users, and
-          Guests.`,
-      link: "https://github.com/Ankan5960/EcoBin",
+      title: "EcoBin: Smart Waste Management",
+      description:
+        "IoT bins report fill levels to a web dashboard so collectors can plan routes. Role-based access for admins, collectors, users, and guests.",
+      // TODO(Ankan): Add one real number if it exists — bins simulated, API endpoints, test coverage
+      stack: [".NET Web API", "PostgreSQL", "React", "TypeScript", "Tailwind", "Docker"],
+      sourceUrl: "https://github.com/Ankan5960/EcoBin",
+      liveUrl: null, // TODO(Ankan): live demo URL if deployed
       image: "/images/projects/ecobin.jpg",
+      imageCaption: "EcoBin dashboard",
     },
     {
       id: 2,
-      title: "🗳️ Fingerprint-based-electronic-voting-machine",
-      description: `A Fingerprint
-          Based Electronic Voting Machine (EVM) integrated
-          biometric technology for enhanced security. Voters
-          authenticate their identity using fingerprints, ensuring that
-          only eligible voters can cast their votes. This system aims to
-          prevent electoral fraud, improve accuracy, and streamline the
-          voting process, making elections more secure and efficient`,
-      link: "https://github.com/Ankan5960/Fingerprint-based-electronic-voting-machine",
-      image:
-        "https://github.com/Ankan5960/Fingerprint-based-electronic-voting-machine/raw/main/circuit-diagram/circuit.png",
+      title: "Fingerprint Electronic Voting Machine",
+      description:
+        "Prototype where a voter is verified by fingerprint before a vote can be cast, preventing duplicate votes without paper ballots.",
+      stack: ["Arduino", "C/C++", "Fingerprint sensor", "LCD"],
+      sourceUrl: "https://github.com/Ankan5960/Fingerprint-based-electronic-voting-machine",
+      liveUrl: null,
+      // Using circuit diagram image; caption makes it clear what it shows
+      image: "https://github.com/Ankan5960/Fingerprint-based-electronic-voting-machine/raw/main/circuit-diagram/circuit.png",
+      // TODO(Ankan): Replace with a photo of the actual physical build if one exists
+      imageCaption: "Circuit design",
     },
     {
       id: 3,
-      title: "📡 Fronted Website for Business",
-      description: `A fronted website for
-          "Maity Enterprise" which is providing fiber optic connection
-          to users. Users can see their location on this website, and
-          also find the plans. New users can find the nearest Optical
-          splitters from it.
-          `,
-      link: "https://maity-enterprise.netlify.app/Home",
+      title: "Maity Enterprise: Broadband Plans & Coverage",
+      description:
+        "Customer-facing site for a fiber broadband provider. Users can compare plans and find their nearest optical splitter on an interactive map.",
+      // TODO(Ankan): Confirm client/business name and whether site is live in production
+      stack: ["React", "JavaScript", "CSS", "Geolocation API"],
+      sourceUrl: null, // TODO(Ankan): public source link if available
+      liveUrl: "https://maity-enterprise.netlify.app/Home",
       image: "/images/projects/maityenterprice.png",
-    },
-    {
-      id: 4,
-      title: " Some Entry level frontend project using HTML, CSS, JS",
-      description: ` some of my entry level projects using (html, css, js) its very helpful for newcomer, 
-        just make sure live preview is installed your vs code start extension, 
-        by defult web server is started in http://localhost:5500/ Now here is some projects`,
-      link: "https://github.com/Ankan5960/web-projects",
-      image: "/images/projects/webprojects.png",
+      imageCaption: "Maity Enterprise site",
     },
   ],
+
+  // ---------- Education ----------
   education: [
     {
       id: 1,
       institution: "Techno International NewTown, Kolkata",
-      degree: "Electronics and Communication Engineering (B.Tech)",
-      Message:"CGPA: 7.57",
-      year: "2021 - 2025",
+      degree: "B.Tech — Electronics and Communication Engineering",
+      detail: "CGPA: 7.57",
+      year: "2021 – 2025",
     },
     {
-      id: 2, institution: "Nohari High School (H.S)",
-      degree: "Higher Secondary (Class 11 & 12)",
-      year: "2019 - 2021",
+      id: 2,
+      institution: "Nohari High School",
+      degree: "Higher Secondary (Class XI–XII)",
+      detail: null,
+      year: "2019 – 2021",
     },
     {
       id: 3,
-      institution: "Nohari High School (H.S)", 
-      degree: "Secondary (Class 10)",
+      institution: "Nohari High School",
+      degree: "Secondary (Class X)",
+      detail: null,
       year: "2019",
     },
   ],
-  Certifications: [
+
+  // ---------- Certifications ----------
+  certifications: [
     {
-      id: 1,  
-      name: "Autodesk Platfrorm Services Basic Viewer and JavaScript",
+      id: 1,
+      name: "Autodesk Platform Services: Basic Viewer and JavaScript",
       organization: "Udemy",
       year: "2025",
+      // TODO(Ankan): Add Udemy certificate verification link if public
     },
     {
       id: 2,
       name: "The Complete 2024 Web Development Bootcamp",
       organization: "Udemy",
       year: "2024",
+      // TODO(Ankan): Add Udemy certificate verification link if public
     },
   ],
-  contact: {
-    email: "maityankan55@gmail.com",
-    github: "https://github.com/Ankan5960",
-    linkedin: "https://www.linkedin.com/in/ankan-maity-a1b44927a/",
-  },
 };
