@@ -15,8 +15,7 @@ export const portfolioData = {
     email: "maityankan55@gmail.com",
     github: "https://github.com/Ankan5960",
     linkedin: "https://www.linkedin.com/in/ankan-maity-a1b44927a/",
-    // TODO(Ankan): Supply the resume PDF at public/Ankan-Maity-Resume.pdf
-    resume: "/Ankan-Maity-Resume.pdf",
+    resume: "/resume/Ankan_Maity_Resume.pdf",
   },
 
   // ---------- About ----------
@@ -133,6 +132,12 @@ export const portfolioData = {
       organization: "Udemy",
       year: "2024",
       // TODO(Ankan): Add Udemy certificate verification link if public
+    },
+    {
+      id: 3,
+      name: "Executive Post Graduate Certificate in Applied AI and Machine Learning",
+      organization: "IIT Kharagpur",
+      year: "Sep 2026 – Present",
     },
   ],
 };
